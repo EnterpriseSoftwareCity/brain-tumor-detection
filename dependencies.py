@@ -21,18 +21,18 @@ def collect_images_from_files(X, Y):
             Y.append(classifier_classes[cls_class])
             
             
-def test_based_on_images(fileTestingClass, dir_source, size = 9):
+def test_based_on_images(classifier, fileTestingClass, size = 9):
     values_classifier = {0: 'No Tumor', 1: 'Is Tumor'}
     
     plt.figure(figsize=(12, 8))
-    path = os.listdir(dir_source)
+    path = os.listdir(STANDARD_DATA_DIRECTORY_STRUCTURE)
     
     subplot_index = 1
 
-    for i in os.listdir(dir_source + fileTestingClass)[:size]:
+    for i in os.listdir(STANDARD_DATA_DIRECTORY_STRUCTURE + fileTestingClass)[:size]:
         plt.subplot(3, 3, subplot_index)
 
-        img = cv2.imread(dir_source + fileTestingClass + i, 0)
+        img = cv2.imread(STANDARD_DATA_DIRECTORY_STRUCTURE + fileTestingClass + i, 0)
         img_resized = cv2.resize(img, (STANDARD_RESIZE_VALUE, STANDARD_RESIZE_VALUE))
         img_resized = img_resized.reshape(1, -1) / 255
         path = classifier.predict(img_resized)
@@ -44,4 +44,10 @@ def test_based_on_images(fileTestingClass, dir_source, size = 9):
             subplot_index = 1
         else:
             subplot_index += 1
-            
+
+
+def scale_data_tests(xTrain, xTest):
+    xTrain = xTrain / 255
+    xTest = xTest / 255
+    
+    return xTrain, xTest
