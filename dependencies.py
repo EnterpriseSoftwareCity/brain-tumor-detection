@@ -10,14 +10,14 @@ STANDARD_RESIZE_VALUE = 300
 classifier_classes = {'no_tumor': 0, 'glioma_tumor': 1, 'pituitary_tumor': 1, 'meningioma_tumor': 1}
 
 
-def collect_images_from_files(X, Y):
+def collect_images_from_files(X, Y, resize_value = STANDARD_RESIZE_VALUE):
     classifier_classes = {'no_tumor': 0, 'glioma_tumor': 1, 'pituitary_tumor': 1, 'meningioma_tumor': 1}
     
     for cls_class in classifier_classes:
         path = STANDARD_DATA_DIRECTORY_STRUCTURE + cls_class
         for file in os.listdir(path):
             img = cv2.imread(path + '/' + file, 0)
-            img = cv2.resize(img, (STANDARD_RESIZE_VALUE, STANDARD_RESIZE_VALUE))
+            img = cv2.resize(img, (resize_value, resize_value))
             X.append(img)
             Y.append(classifier_classes[cls_class])
             
