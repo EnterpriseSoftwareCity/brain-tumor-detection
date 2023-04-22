@@ -6,7 +6,7 @@ import os
 
 
 STANDARD_DATA_DIRECTORY_STRUCTURE = 'data/Testing/'
-STANDARD_RESIZE_VALUE = 200
+STANDARD_RESIZE_VALUE = 300
 classifier_classes = {'no_tumor': 0, 'glioma_tumor': 1, 'pituitary_tumor': 1, 'meningioma_tumor': 1}
 
 
